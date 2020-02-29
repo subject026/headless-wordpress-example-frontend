@@ -16,6 +16,7 @@ module.exports = {
         // Url to query from
         url:
           "http://localhost/headless-wordpress-example.rainbowmonkey.info/graphql",
+        refetchInterval: 30,
       },
     },
   ],
