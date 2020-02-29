@@ -6,6 +6,7 @@ export const Hero = styled.section`
   color: white;
   h1 {
     font-size: 60px;
+    margin-bottom: 60px;
   }
 `;
 
