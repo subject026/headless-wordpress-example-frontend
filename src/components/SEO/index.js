@@ -5,7 +5,7 @@ import { useStaticQuery } from "gatsby";
 export default ({ title }) => {
   const data = useStaticQuery(graphql`
     query {
-      wordpress {
+      wordPress {
         node {
           id
         }
@@ -16,6 +16,6 @@ export default ({ title }) => {
       }
     }
   `);
-  const { generalSettingsTitle } = data.wordpress.allSettings;
+  const { generalSettingsTitle } = data.wordPress.allSettings;
   return <Helmet title={`${generalSettingsTitle} | ${title}`} />;
 };
