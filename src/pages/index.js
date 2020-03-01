@@ -74,9 +74,6 @@ export default () => {
             return null;
         }
       })}
-      <TextContent>
-        <p>Here is some text content.</p>
-      </TextContent>
     </Layout>
   );
 };
