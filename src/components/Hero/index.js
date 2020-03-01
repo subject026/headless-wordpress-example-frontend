@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Hero, HeroInner } from "./hero.css.js";
-import Wrapper from "../util/Wrapper.js";
+import Wrapper from "../../util/styled/Wrapper";
 
 export default ({ mainHeading, subHeading }) => {
   return (

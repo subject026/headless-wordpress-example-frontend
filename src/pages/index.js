@@ -6,7 +6,7 @@ import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import Hero from "../components/Hero";
 import TextContent from "../components/TextContent";
-import SeperateBlocks from "../components/util/SeperateBlocks";
+import SeperateBlocks from "../util/SeperateBlocks";
 
 export default () => {
   const data = useStaticQuery(graphql`

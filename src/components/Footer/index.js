@@ -1,7 +1,7 @@
 import React from "react";
 
 import Footer, { FooterInner } from "./footer.css.js";
-import Wrapper from "../util/Wrapper.js";
+import Wrapper from "../../util/styled/Wrapper";
 
 export default () => {
   return (

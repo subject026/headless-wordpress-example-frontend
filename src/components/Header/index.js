@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Header, HeaderInner, SiteTitle } from "./header.css";
-import Wrapper from "../util/Wrapper";
+import Wrapper from "../../util/styled/Wrapper";
 
 export default () => {
   return (

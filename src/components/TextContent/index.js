@@ -1,7 +1,7 @@
 import React from "react";
 
 import TextContent from "./textContent.css";
-import Wrapper from "../util/Wrapper";
+import Wrapper from "../../util/styled/Wrapper";
 
 export default ({ children }) => {
   return (
