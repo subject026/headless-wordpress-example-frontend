@@ -14,16 +14,16 @@ export default blocks => {
   blocks.forEach(block => {
     if (!allowedCoreBlocks.includes(block.__typename)) {
       // if the block isn't in the core blocks array just push it onto the new array
-      finalArray.push(block);
+      newBlocksArray.push(block);
       prevBlockWasCore = false;
     } else {
       // block is one of the core text blocks....
       if (prevBlockWasCore) {
         // if previous block was a core block push it onto the sub array
-        finalArray[finalArray.length - 1].blocks.push(block);
+        newBlocksArray[newBlocksArray.length - 1].blocks.push(block);
       } else {
         // otherwise create another core block object and sub array and add the block
-        finalArray.push({
+        newBlocksArray.push({
           __typename: "WordpressCoreBlocks",
           blocks: [{ ...block }],
         });
