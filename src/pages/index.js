@@ -7,6 +7,7 @@ import SEO from "../components/SEO";
 import Hero from "../components/Hero";
 import TextContent from "../components/TextContent";
 import SeperateBlocks from "../util/SeperateBlocks";
+import { customBlocks } from "../util/Constants";
 
 export default () => {
   const data = useStaticQuery(graphql`
@@ -21,6 +22,17 @@ export default () => {
                 acf {
                   main_heading
                   sub_heading
+                  background_image {
+                    altText
+                    sourceUrl
+                    imageFile {
+                      childImageSharp {
+                        fluid(maxWidth: 2000) {
+                          ...GatsbyImageSharpFluid
+                        }
+                      }
+                    }
+                  }
                 }
               }
               ... on WordPress_CoreHeadingBlock {
@@ -53,17 +65,19 @@ export default () => {
       <SEO title="Index Page" />
       {seperatedBlocks.map((block, i) => {
         switch (block.__typename) {
-          case "WordPress_AcfHeroBlock":
+          case customBlocks.heroBlock:
+            // console.log(block);
             return (
               <Hero
-                key={i}
+                key={`customBlock__${i}`}
                 mainHeading={block.acf.main_heading}
                 subHeading={block.acf.sub_heading}
+                background_image={block.acf.background_image}
               />
             );
-          case "WordpressCoreBlocks":
+          case customBlocks.coreBlocksBlock:
             return (
-              <TextContent>
+              <TextContent key={`customBlock__${i}`}>
                 {block.blocks.map(block =>
                   ReactHTMLParser(block.originalContent)
                 )}

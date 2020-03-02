@@ -1,10 +1,4 @@
-const allowedCoreBlocks = [
-  "WordPress_CoreHeadingBlock",
-  "WordPress_CoreParagraphBlock",
-  "WordPress_CoreListBlock",
-  "WordPress_CoreQuoteBlock",
-  "WordPress_CoreSubheadBlock",
-];
+import { allowedCoreBlocks, customBlocks } from "./Constants";
 
 export default blocks => {
   const newBlocksArray = [];
@@ -24,7 +18,7 @@ export default blocks => {
       } else {
         // otherwise create another core block object and sub array and add the block
         newBlocksArray.push({
-          __typename: "WordpressCoreBlocks",
+          __typename: customBlocks.coreBlocksBlock,
           blocks: [{ ...block }],
         });
         prevBlockWasCore = true;

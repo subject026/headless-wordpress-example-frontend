@@ -19,5 +19,7 @@ module.exports = {
         refetchInterval: 30,
       },
     },
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
   ],
 };
