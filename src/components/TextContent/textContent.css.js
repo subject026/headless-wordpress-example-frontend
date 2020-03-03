@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
 export default styled.section`
-  padding: 40px 0;
+  padding: 80px 0;
   margin: 0;
 `;
