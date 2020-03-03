@@ -15,3 +15,12 @@ export const SiteTitle = styled.span`
   font-size: 1.2rem;
   font-weight: 600;
 `;
+
+export const Nav = styled.nav`
+  ul {
+    list-style-type: none;
+  }
+  li {
+    display: inline-block;
+  }
+`;
