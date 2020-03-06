@@ -9,7 +9,7 @@ export default () => {
   return (
     <Layout>
       <SEO title="page not found" />
-      <Hero title="That page doesn't exist!" />
+      {/* <Hero title="That page doesn't exist!" /> */}
       <TextContent>
         <p>Nothing here i'm afraid</p>
       </TextContent>
