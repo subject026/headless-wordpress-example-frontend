@@ -1,6 +1,7 @@
 import React from "react";
+import { Transition } from "react-transition-group";
 
-import { Hero, HeroInner, StyledBackgroundImage } from "./hero.css.js";
+import { Hero, HeroInner, StyledBackgroundImage, H1, H3 } from "./hero.css.js";
 import Wrapper from "../../util/styled/Wrapper";
 
 export default ({ mainHeading, subHeading, background_image }) => {
@@ -12,8 +13,16 @@ export default ({ mainHeading, subHeading, background_image }) => {
         <Wrapper>
           <HeroInner>
             <section>
-              <h1>{mainHeading}</h1>
-              <h3>{subHeading}</h3>
+              <Transition in={true} timeout={0} appear={true}>
+                {state => {
+                  return (
+                    <>
+                      <H1 state={state}>{mainHeading}</H1>
+                      <H3 state={state}>{subHeading}</H3>
+                    </>
+                  );
+                }}
+              </Transition>
             </section>
           </HeroInner>
         </Wrapper>

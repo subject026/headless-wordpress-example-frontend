@@ -25,4 +25,14 @@ export default createGlobalStyle`
   h2, h3, h4, h5 {
     margin-top: 3rem;
   }
+
+  h1 {
+    font-size: 40px;
+    font-weight: 200;
+    color: #fff;
+  }
+
+  h3 {
+    color: #fff;
+  }
 `;
