@@ -2,7 +2,6 @@ import React from "react";
 import { graphql } from "gatsby";
 import ReactHTMLParser from "react-html-parser";
 
-import Layout from "../Layout";
 import SEO from "../SEO";
 import Hero from "../Hero";
 import TextContent from "../TextContent";
@@ -15,7 +14,7 @@ export default ({ data }) => {
   const seperatedBlocks = SeperateBlocks([...blocks]);
 
   return (
-    <Layout>
+    <>
       <SEO title="Index Page" />
       {seperatedBlocks.map((block, i) => {
         switch (block.__typename) {
@@ -45,7 +44,7 @@ export default ({ data }) => {
             return null;
         }
       })}
-    </Layout>
+    </>
   );
 };
 

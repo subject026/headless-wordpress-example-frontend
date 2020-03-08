@@ -6,15 +6,18 @@ import Globals from "./globals.css.js";
 import Header from "../Header";
 import Main from "./main.css.js";
 import Footer from "../Footer/index.js";
+import PageTransition from "../PageTransition/index.js";
 
-export default ({ children }) => {
+export default ({ children, location }) => {
   return (
     <>
       <Globals />
       <ThemeProvider theme={Theme}>
         <Header />
-        <Main>{children}</Main>
-        <Footer />
+        <PageTransition location={location}>
+          <Main>{children}</Main>
+          <Footer />
+        </PageTransition>
       </ThemeProvider>
     </>
   );
