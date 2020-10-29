@@ -11,12 +11,13 @@ export const NavEl = styled.nav`
 export const NavList = styled.ul`
   margin: 0;
   padding: 60px 32px;
-  background-color: #eee;
+  background-color: #f5f5f5;
   list-style-type: none;
   height: 100%;
   position: fixed;
   right: 0;
   top: 0;
+  z-index: 11;
   transform: ${({ navIsOpen }) =>
     navIsOpen ? "translateX(0)" : "translateX(100%)"};
   @media (min-width: 600px) {
@@ -55,7 +56,7 @@ export const NavToggle = styled.button`
   position: fixed;
   right: 0;
   top: 0;
-  z-index: 10;
+  z-index: 12;
   @media (min-width: 600px) {
     display: none;
   }

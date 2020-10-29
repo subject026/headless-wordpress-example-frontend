@@ -1,52 +1,58 @@
-import React from "react"
+import React from "react";
 
-export const GlobalStateContext = React.createContext()
-export const GlobalDispatchContext = React.createContext()
+export const GlobalStateContext = React.createContext();
+export const GlobalDispatchContext = React.createContext();
 
 const initialState = {
   theme: "light",
   navIsOpen: false,
-  navFocusedLinks: 0
-}
+  navFocusedLinks: 0,
+};
 
 function reducer(state, action) {
   switch (action.type) {
-    case "TOGGLE_NAV": {
+    case "NAV_OPEN": {
       return {
         ...state,
-        navIsOpen: !state.navIsOpen,
-      }
+        navIsOpen: true,
+      };
+    }
+    case "NAV_CLOSE": {
+      return {
+        ...state,
+        navIsOpen: false,
+      };
     }
     case "NAV_FOCUS": {
       return {
         ...state,
-        navIsOpen: true,
-        navFocusedLinks: state.navFocusedLinks + 1
-      }
+        navIsOpen: state.navFocusedLinks + 1 > 0 ? true : false,
+        navFocusedLinks: state.navFocusedLinks + 1,
+      };
     }
     case "NAV_BLUR": {
-      console.log(state)    
-      const navFocusedLinks = state.navFocusedLinks - 1
+      const navFocusedLinks =
+        state.navFocusedLinks - 1 < 1 ? 0 : state.navFocusedLinks - 1;
       return {
         ...state,
         navFocusedLinks,
         navIsOpen: navFocusedLinks > 0 ? true : false,
-      }
+      };
     }
     default:
-      throw new Error("Bad Action Type")
+      throw new Error("Bad Action Type");
   }
 }
 
 const GlobalContextProvider = ({ children }) => {
-  const [state, dispatch] = React.useReducer(reducer, initialState)
+  const [state, dispatch] = React.useReducer(reducer, initialState);
   return (
     <GlobalStateContext.Provider value={state}>
       <GlobalDispatchContext.Provider value={dispatch}>
         {children}
       </GlobalDispatchContext.Provider>
     </GlobalStateContext.Provider>
-  )
-}
+  );
+};
 
-export default GlobalContextProvider
+export default GlobalContextProvider;

@@ -19,10 +19,13 @@ export const Overlay = styled.div`
   top: 0;
   margin: 0;
   background-color: rgba(0, 0, 0, 0.7);
+  @media (min-width: 600px) {
+    display: none;
+  }
   ${({ isVisible }) => {
-    if (isVisible) return css``;
-    return css`
-      transform: translateX(100%);
-    `;
+    if (!isVisible)
+      return css`
+        transform: translateX(100%);
+      `;
   }}
 `;

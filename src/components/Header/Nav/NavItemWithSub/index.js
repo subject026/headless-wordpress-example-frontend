@@ -15,6 +15,7 @@ const NavItemWithSub = ({ item }) => {
   const handleLinkFocus = e => {
     dispatch({ type: "NAV_FOCUS" });
     setNavState(state => {
+      console.log("sub menu focus: ", state);
       return {
         ...state,
         focusedLinks: state.focusedLinks + 1,
@@ -26,6 +27,7 @@ const NavItemWithSub = ({ item }) => {
   const handleLinkBlur = () => {
     dispatch({ type: "NAV_BLUR" });
     setNavState(state => {
+      console.log("sub menu blur: ", state);
       const focusedLinks = state.focusedLinks - 1;
       return {
         ...state,
@@ -64,7 +66,7 @@ const NavItemWithSub = ({ item }) => {
       <span>{item.label}</span>
       <SubNavListEl subNavIsOpen={isOpen}>
         {item.childItems.nodes.map((child, i) => (
-          <SubNavItem key={`subNavKey_${item.label + i}`}>
+          <SubNavItem key={`subNavKey_${i}_${item.label + child.path}`}>
             <Link
               onFocus={handleLinkFocus}
               onBlur={handleLinkBlur}

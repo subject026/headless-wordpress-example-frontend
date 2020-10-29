@@ -31,6 +31,5 @@ export const useSiteMenuData = () => {
       }
     }
   `);
-  console.log("\n\n\n", data, "\n\n\n");
   return data.wordPress.menus.nodes[0];
 };
