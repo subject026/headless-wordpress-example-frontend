@@ -1,7 +1,6 @@
 import { useStaticQuery, graphql } from "gatsby";
 
 export const useSiteMenuData = () => {
-  console.log("booffff");
   const data = useStaticQuery(graphql`
     query MenuData {
       wordPress {
@@ -11,10 +10,12 @@ export const useSiteMenuData = () => {
               nodes {
                 label
                 path
+                parentDatabaseId
                 childItems {
                   nodes {
                     label
                     path
+                    parentDatabaseId
                     childItems {
                       nodes {
                         label
@@ -30,5 +31,6 @@ export const useSiteMenuData = () => {
       }
     }
   `);
+  console.log("\n\n\n", data, "\n\n\n");
   return data.wordPress.menus.nodes[0];
 };

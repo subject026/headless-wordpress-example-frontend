@@ -5,6 +5,8 @@ export const GlobalDispatchContext = React.createContext()
 
 const initialState = {
   theme: "light",
+  navIsOpen: false,
+  navFocusedLinks: 0
 }
 
 function reducer(state, action) {
@@ -15,16 +17,20 @@ function reducer(state, action) {
         navIsOpen: !state.navIsOpen,
       }
     }
-    case "OPEN_NAV": {
+    case "NAV_FOCUS": {
       return {
         ...state,
         navIsOpen: true,
+        navFocusedLinks: state.navFocusedLinks + 1
       }
     }
-    case "CLOSE_NAV": {
+    case "NAV_BLUR": {
+      console.log(state)    
+      const navFocusedLinks = state.navFocusedLinks - 1
       return {
         ...state,
-        navIsOpen: false,
+        navFocusedLinks,
+        navIsOpen: navFocusedLinks > 0 ? true : false,
       }
     }
     default:

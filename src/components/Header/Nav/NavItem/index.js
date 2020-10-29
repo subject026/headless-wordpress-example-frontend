@@ -26,10 +26,10 @@ export const NavItemEl = styled.li`
 `;
 
 
-const NavItem = ({item}) => {    
+const NavItem = ({item, handleFocus, handleBlur}) => {    
     return (
       <NavItemEl>
-        <Link to={item.path}>{item.label}</Link>
+        <Link onFocus={handleFocus} onBlur={handleBlur} to={item.path}>{item.label}</Link>
       </NavItemEl>
     );
   

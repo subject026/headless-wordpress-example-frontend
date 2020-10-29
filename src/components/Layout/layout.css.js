@@ -17,11 +17,10 @@ export const Overlay = styled.div`
   position: fixed;
   left: 0;
   top: 0;
-  background-color: rgba(0,0,0, 0.7);
-  ${({isVisible}) => {
-    if (isVisible) return css`
-    
-    `;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  ${({ isVisible }) => {
+    if (isVisible) return css``;
     return css`
       transform: translateX(100%);
     `;
