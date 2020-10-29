@@ -14,12 +14,9 @@ module.exports = {
         // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
         fieldName: "wordPress",
         // Url to query from
-        url:
-          "http://localhost/headless-wordpress-example.rainbowmonkey.info/graphql",
-        refetchInterval: 30,
+        url: "http://localhost:10018/graphql",
+        refetchInterval: 20,
       },
     },
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
   ],
 };

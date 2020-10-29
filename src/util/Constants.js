@@ -1,12 +1,12 @@
 export const allowedCoreBlocks = [
   "WordPress_CoreHeadingBlock",
-  "WordPress_CoreParagraphBlock",
+  "core/paragraph",
   "WordPress_CoreListBlock",
   "WordPress_CoreQuoteBlock",
   "WordPress_CoreSubheadBlock",
 ];
 
 export const customBlocks = {
-  heroBlock: "WordPress_AcfHeroBlock",
+  heroBlock: "acf/hero",
   coreBlocksBlock: "Wordpress_CoreBlocksBlock",
 };

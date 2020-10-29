@@ -6,7 +6,7 @@ export default blocks => {
   let prevBlockWasCore = false;
 
   blocks.forEach(block => {
-    if (!allowedCoreBlocks.includes(block.__typename)) {
+    if (!allowedCoreBlocks.includes(block.name)) {
       // if the block isn't in the core blocks array just push it onto the new array
       newBlocksArray.push(block);
       prevBlockWasCore = false;
@@ -18,7 +18,7 @@ export default blocks => {
       } else {
         // otherwise create another core block object and sub array and add the block
         newBlocksArray.push({
-          __typename: customBlocks.coreBlocksBlock,
+          name: customBlocks.coreBlocksBlock,
           blocks: [{ ...block }],
         });
         prevBlockWasCore = true;

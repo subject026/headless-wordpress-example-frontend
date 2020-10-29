@@ -8,7 +8,6 @@ export default createGlobalStyle`
     color: #404040;
   } 
 
-
   * {
     margin: 0;
   }

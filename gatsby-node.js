@@ -1,37 +1,37 @@
 // gatsby-node.js
 const path = require("path");
-const { createRemoteFileNode } = require("gatsby-source-filesystem");
+// const { createRemoteFileNode } = require("gatsby-source-filesystem");
 
-exports.createResolvers = async ({
-  actions,
-  cache,
-  createNodeId,
-  createResolvers,
-  store,
-  reporter,
-}) => {
-  const { createNode } = actions;
+// exports.createResolvers = async ({
+//   actions,
+//   cache,
+//   createNodeId,
+//   createResolvers,
+//   store,
+//   reporter,
+// }) => {
+//   const { createNode } = actions;
 
-  await createResolvers({
-    WordPress_MediaItem: {
-      imageFile: {
-        type: "File",
-        async resolve(source) {
-          let sourceUrl = source.sourceUrl;
+//   await createResolvers({
+//     WordPress_MediaItem: {
+//       imageFile: {
+//         type: "File",
+//         async resolve(source) {
+//           let sourceUrl = source.sourceUrl;
 
-          return await createRemoteFileNode({
-            url: encodeURI(sourceUrl),
-            store,
-            cache,
-            createNode,
-            createNodeId,
-            reporter,
-          });
-        },
-      },
-    },
-  });
-};
+//           return await createRemoteFileNode({
+//             url: encodeURI(sourceUrl),
+//             store,
+//             cache,
+//             createNode,
+//             createNodeId,
+//             reporter,
+//           });
+//         },
+//       },
+//     },
+//   });
+// };
 
 exports.createPages = async ({ actions, graphql }) => {
   const { data } = await graphql(`
@@ -55,7 +55,15 @@ exports.createPages = async ({ actions, graphql }) => {
     return null;
   }
 
-  data.wordPress.pages.edges.forEach(({ node }) => {
+  data.wordPress.pages.edges.forEach(async ({ node }) => {
+    // const imageId = 7;
+    // const data = await graphql`
+    //   query {
+    //     wordpress {
+    //       pageBy( id: ${imageId})
+    //     }
+    //   }
+    // `;
     actions.createPage({
       path: node.uri,
       component: path.resolve("./src/components/PageTemplate/index.js"),

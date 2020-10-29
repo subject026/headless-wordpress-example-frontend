@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import BackgroundImage from "gatsby-background-image";
 
 export const Hero = styled.section`
   margin: 0;
@@ -11,7 +10,7 @@ export const Hero = styled.section`
   }
 `;
 
-export const StyledBackgroundImage = styled(BackgroundImage)`
+export const StyledBackgroundImage = styled.img`
   height: 100%;
 `;
 

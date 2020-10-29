@@ -10,29 +10,31 @@ import SeperateBlocks from "../../util/SeperateBlocks";
 import { customBlocks } from "../../util/Constants";
 
 export default ({ data }) => {
-  const { blocks } = data.wordPress.pageBy;
-
-  const seperatedBlocks = SeperateBlocks([...blocks]);
+  let { blocks } = data.wordPress.pageBy;
+  // blocksJSON = JSON.parse(blocksJSON);
+  // const seperatedBlocks = SeperateBlocks([...blocksJSON]);
 
   return (
     <Layout>
       <SEO title="Index Page" />
-      {seperatedBlocks.map((block, i) => {
-        switch (block.__typename) {
+      {/* {seperatedBlocks.map((block, i) => {
+        console.log("block: ", block);
+        switch (block.name) {
           case customBlocks.heroBlock:
+            // console.log("booooooooooooooooo");
+            const { main_text, secondary_text } = block.attributes.data;
+            // console.log(main_text);
+            // console.log(secondary_text);
             return (
               <Hero
                 key={`customBlock__${i}`}
-                mainHeading={
-                  block.acf.main_heading
-                    ? block.acf.main_heading
-                    : "No hero heading provided"
-                }
-                subHeading={block.acf.sub_heading}
-                background_image={block.acf.background_image}
+                main_text={main_text}
+                secondary_text={secondary_text}
+                // background_image={block.acf.background_image}
               />
             );
           case customBlocks.coreBlocksBlock:
+            console.log("oooooooooooooo", block);
             return (
               <TextContent key={`customBlock__${i}`}>
                 {block.blocks.map(block =>
@@ -41,10 +43,17 @@ export default ({ data }) => {
               </TextContent>
             );
           default:
+            // <TextContent key={`customBlock__${i}`}>
+            //   <pre>
+            //     {block.blocks.map(block =>
+            //       ReactHTMLParser(block.att)
+            //     )}
+            //   </pre>
+            // </TextContent>;
             console.error("Unrecognised block returned from query!");
             return null;
         }
-      })}
+      })} */}
     </Layout>
   );
 };
@@ -55,40 +64,35 @@ export const pageQuery = graphql`
       pageBy(id: $id) {
         title
         slug
-        blocks {
-          ... on WordPress_AcfHeroBlock {
-            acf {
-              main_heading
-              sub_heading
-              background_image {
-                altText
-                sourceUrl
-                imageFile {
-                  childImageSharp {
-                    fluid(maxWidth: 2000) {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
-                }
-              }
-            }
-          }
-          ... on WordPress_CoreHeadingBlock {
-            originalContent
-          }
-          ... on WordPress_CoreParagraphBlock {
-            originalContent
-          }
-          ... on WordPress_CoreListBlock {
-            originalContent
-          }
-          ... on WordPress_CoreQuoteBlock {
-            originalContent
-          }
-          ... on WordPress_CoreSubheadBlock {
-            originalContent
-          }
-        }
+        # blocks {
+        #   # ... on WordPress_AcfHeroBlock {
+        #   #   attributes {
+        #   #     data
+        #   #   }
+        #   # }
+        #   # ... on WordPress_CoreHeadingBlock {
+        #   #   attributes {
+        #   #     data
+        #   #   }
+        #   # }
+        #   # ... on WordPress_CoreParagraphBlock {
+        #   #   attributes {
+        #   #     data
+        #   #   }
+        #   # }
+        #   # ... on WordPress_CoreListBlock {
+        #   #   attributes {
+        #   #     data
+        #   #   }
+        #   # }
+        #   # ... on WordPress_CoreQuoteBlock {
+        #   #   attributes
+        #   # }
+        #   # ... on WordPress_CoreSubheadBlock {
+        #   #   attributes
+        #   # }
+        #   name
+        # }
       }
     }
   }
