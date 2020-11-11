@@ -1,38 +1,35 @@
-import React from 'react'
-import styled from "styled-components";
-import { Link } from "gatsby";
-
+import React from "react";
+import styled, { css } from "styled-components";
+import Link from "../../../Link";
 
 export const NavItemEl = styled.li`
-  display: block;
-  margin: 0;
-  position: relative;
-  span {
-    display: inline-block;
-    padding: 0 20px;
-  }
-  a {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    padding: 8px 16px;
-  }
+  ${({ theme }) => {
+    return css`
+      display: block;
+      margin: 0;
+      position: relative;
+      span {
+        display: inline-block;
+        padding: 0 ${theme.layout.base3};
+        color: pink;
+      }
 
-  @media (min-width: 600px) {  
-    display: inline-block;
-    height: 100%;  
-  }
-
+      @media (min-width: 600px) {
+        display: inline-block;
+        height: 100%;
+      }
+    `;
+  }}
 `;
 
-
-const NavItem = ({item, handleFocus, handleBlur}) => {    
-    return (
-      <NavItemEl>
-        <Link onFocus={handleFocus} onBlur={handleBlur} to={item.path}>{item.label}</Link>
-      </NavItemEl>
-    );
-  
-}
+const NavItem = ({ item, handleFocus, handleBlur }) => {
+  return (
+    <NavItemEl>
+      <Link handleFocus={handleFocus} onBlur={handleBlur} to={item.path}>
+        {item.label}
+      </Link>
+    </NavItemEl>
+  );
+};
 
 export default NavItem;

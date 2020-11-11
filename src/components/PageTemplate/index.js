@@ -11,28 +11,19 @@ import { customBlocks } from "../../util/Constants";
 
 export default ({ data }) => {
   let { blocks } = data.wordPress.pageBy;
-  // blocksJSON = JSON.parse(blocksJSON);
-  // const seperatedBlocks = SeperateBlocks([...blocksJSON]);
-
+  const seperatedBlocks = SeperateBlocks([...blocks]);
   return (
     <Layout>
       <SEO title="Index Page" />
-      {/* {seperatedBlocks.map((block, i) => {
+      {seperatedBlocks.map((block, i) => {
         console.log("block: ", block);
         switch (block.name) {
           case customBlocks.heroBlock:
             // console.log("booooooooooooooooo");
-            const { main_text, secondary_text } = block.attributes.data;
+            const { attributes } = block;
             // console.log(main_text);
             // console.log(secondary_text);
-            return (
-              <Hero
-                key={`customBlock__${i}`}
-                main_text={main_text}
-                secondary_text={secondary_text}
-                // background_image={block.acf.background_image}
-              />
-            );
+            return <Hero key={`customBlock__${i}`} data={attributes} />;
           case customBlocks.coreBlocksBlock:
             console.log("oooooooooooooo", block);
             return (
@@ -53,7 +44,7 @@ export default ({ data }) => {
             console.error("Unrecognised block returned from query!");
             return null;
         }
-      })} */}
+      })}
     </Layout>
   );
 };
@@ -64,35 +55,52 @@ export const pageQuery = graphql`
       pageBy(id: $id) {
         title
         slug
-        # blocks {
-        #   # ... on WordPress_AcfHeroBlock {
-        #   #   attributes {
-        #   #     data
-        #   #   }
-        #   # }
-        #   # ... on WordPress_CoreHeadingBlock {
-        #   #   attributes {
-        #   #     data
-        #   #   }
-        #   # }
-        #   # ... on WordPress_CoreParagraphBlock {
-        #   #   attributes {
-        #   #     data
-        #   #   }
-        #   # }
-        #   # ... on WordPress_CoreListBlock {
-        #   #   attributes {
-        #   #     data
-        #   #   }
-        #   # }
-        #   # ... on WordPress_CoreQuoteBlock {
-        #   #   attributes
-        #   # }
-        #   # ... on WordPress_CoreSubheadBlock {
-        #   #   attributes
-        #   # }
-        #   name
-        # }
+        blocks {
+          ... on WordPress_BaseJamBlocksCtaBlock {
+            attributes {
+              className
+              description
+              imgAlt
+              imgID
+              imgSizes
+              imgSrc
+            }
+          }
+          ... on WordPress_BaseJamBlocksHeroBlock {
+            attributes {
+              className
+              description
+              imgAlt
+              imgID
+              imgSizes
+              imgSrc
+              mainText
+              subText
+            }
+          }
+          # ... on WordPress_CoreHeadingBlock {
+          #   attributes {
+          #     data
+          #   }
+          # }
+          # ... on WordPress_CoreParagraphBlock {
+          #   attributes {
+          #     data
+          #   }
+          # }
+          # ... on WordPress_CoreListBlock {
+          #   attributes {
+          #     data
+          #   }
+          # }
+          # ... on WordPress_CoreQuoteBlock {
+          #   attributes
+          # }
+          # ... on WordPress_CoreSubheadBlock {
+          #   attributes
+          # }
+          name
+        }
       }
     }
   }

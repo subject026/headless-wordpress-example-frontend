@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const NavEl = styled.nav`
   margin: 0;
@@ -8,87 +8,121 @@ export const NavEl = styled.nav`
   }
 `;
 
+export const NavToggle = styled.button`
+  ${({ subNavIsOpen, theme }) => {
+    return css`
+      position: fixed;
+      right: ${theme.layout.base2};
+      top: ${theme.layout.base2};
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 12;
+      border: none;
+      background: none;
+      &:hover {
+        cursor: pointer;
+        path {
+          fill: ${theme.colors.black};
+        }
+      }
+      path {
+        fill: ${theme.colors.black2};
+      }
+      @media (min-width: 600px) {
+        display: none;
+      }
+    `;
+  }};
+`;
+
 export const NavList = styled.ul`
-  margin: 0;
-  padding: 60px 32px;
-  background-color: #f5f5f5;
-  list-style-type: none;
-  height: 100%;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 11;
-  transform: ${({ navIsOpen }) =>
-    navIsOpen ? "translateX(0)" : "translateX(100%)"};
-  @media (min-width: 600px) {
-    position: static;
-    transform: translateX(0);
-  }
+  ${({ theme, navIsOpen }) => {
+    return css`
+      margin: 0;
+      padding: ${theme.layout.base4};
+      background-color: #f5f5f5;
+      list-style-type: none;
+      height: 100%;
+      position: fixed;
+      right: 0;
+      top: 0;
+      z-index: 11;
+      overflow-y: scroll;
+      transform: ${navIsOpen ? "translateX(15px)" : "translateX(100%)"};
+      transition: ${theme.transition.nav};
+      @media (min-width: 600px) {
+        position: static;
+        transform: translateX(0);
+        padding: 0;
+        overflow: visible;
+      }
+    `;
+  }}
 `;
 
 export const ListItem = styled.li`
-  display: block;
-  margin: 0;
-  padding: 0;
-  span {
-    display: inline-block;
-    padding: 8px 16px;
-  }
-  @media (min-width: 600px) {
-    position: relative;
-    span {
-      display: flex;
-      align-items: center;
-      height: 100%;
-    }
-    a {
-      display: flex;
-      align-items: center;
-      height: 100%;
-      padding: 8px 16px;
-    }
-    display: inline-block;
-    height: 100%;
-  }
-`;
-
-export const NavToggle = styled.button`
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 12;
-  @media (min-width: 600px) {
-    display: none;
-  }
+  ${({ theme }) => {
+    return css`
+      display: block;
+      margin: 0;
+      padding 0;
+      span {
+        display: inline-block;
+        padding: ${theme.layout.base1} ${theme.layout.base2};
+      }
+      
+      @media (min-width: 600px) {
+        position: relative;
+        span {
+          display: flex;
+          align-items: center;
+          height: 100%;
+        }        
+        display: inline-block;
+        height: 100%;
+      }
+    `;
+  }}
 `;
 
 export const SubNavListEl = styled.ul`
-  max-width: 400px;
-  padding: 0 0 0 16px;
-  margin: 0;
-  @media (min-width: 600px) {
-    position: absolute;
-    transform: ${({ subNavIsOpen }) =>
-      subNavIsOpen ? "translateY(0px)" : "translateY(-1000px)"};
-    transition: opacity 0.2s linear;
-    opacity: ${({ subNavIsOpen }) => (subNavIsOpen ? 1 : 0)};
-    z-index: ${({ subNavIsOpen }) => (subNavIsOpen ? "auto" : -10)};
-  }
+  ${({ subNavIsOpen, theme }) => {
+    return css`
+      max-width: 400px;
+      padding: 0 0 ${theme.layout.base2} ${theme.layout.base2};
+      margin: 0;
+      @media (min-width: 600px) {
+        position: absolute;
+        transform: ${({ subNavIsOpen }) =>
+          subNavIsOpen ? `translateY(0px)` : `translateY(-1000px)`};
+        transition: opacity 0.2s linear;
+        opacity: ${subNavIsOpen ? 1 : 0};
+        padding: 0 0 ${theme.layout.base2} 0;
+      }
+    `;
+  }}
 `;
 
 export const SubNavItem = styled.li`
-  display: block;
-  width: 100%;
-  margin: 0;
-  a {
-    display: inline-block;
-    padding: 8px 20px;
-  }
+  ${({ subNavIsOpen, theme }) => {
+    return css`
+      display: block;
+      width: 100%;
+      margin: 0;
+      a {
+        display: inline-block;
+        padding: ${theme.layout.base2} ${theme.layout.base2};
+        color: red;
+      }
 
-  @media (min-width: 600px) {
-    a {
-      white-space: nowrap;
-      display: inline-block;
-    }
-  }
+      @media (min-width: 600px) {
+        a {
+          white-space: nowrap;
+          display: inline-block;
+        }
+      }
+    `;
+  }}
 `;

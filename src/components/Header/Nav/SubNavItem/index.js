@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "gatsby";
 import styled from "styled-components";
+
+import Link from "../../../Link";
 
 const NavItemStyled = styled.li`
   display: block;
@@ -10,7 +11,7 @@ const NavItemStyled = styled.li`
 const NavItem = ({ child, handleFocus, handleBlur }) => {
   return (
     <NavItemStyled>
-      <Link onFocus={handleFocus} onBlur={handleBlur} to={child.path}>
+      <Link handleFocus={handleFocus} onBlur={handleBlur} to={child.path}>
         {child.label}
       </Link>
     </NavItemStyled>

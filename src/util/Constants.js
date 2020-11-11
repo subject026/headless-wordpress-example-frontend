@@ -7,6 +7,7 @@ export const allowedCoreBlocks = [
 ];
 
 export const customBlocks = {
-  heroBlock: "acf/hero",
+  heroBlock: "base-jam-blocks/hero",
+  // ctaBlock: "base-jam-blocks/cta",
   coreBlocksBlock: "Wordpress_CoreBlocksBlock",
 };

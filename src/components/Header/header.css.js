@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Header = styled.header`
   height: ${props => props.theme.layout.headerHeight};
+  margin: 0;
   color: #202020;
 `;
 
@@ -16,7 +17,3 @@ export const SiteTitle = styled.span`
   font-size: 1.2rem;
   /* font-weight: 600; */
 `;
-
-
-
-

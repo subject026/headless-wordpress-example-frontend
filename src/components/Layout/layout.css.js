@@ -12,20 +12,20 @@ export const Main = styled.main`
 `;
 
 export const Overlay = styled.div`
-  height: 100vh;
-  width: 100vw;
-  position: fixed;
-  left: 0;
-  top: 0;
-  margin: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  @media (min-width: 600px) {
-    display: none;
-  }
-  ${({ isVisible }) => {
-    if (!isVisible)
-      return css`
-        transform: translateX(100%);
-      `;
+  ${({ theme, isVisible }) => {
+    return css`
+      height: 100vh;
+      width: 100vw;
+      position: fixed;
+      left: 0;
+      top: 0;
+      margin: 0;
+      background-color: rgba(30, 30, 30, 0.8);
+      opacity: ${isVisible ? 1 : 0};
+      transition: opacity ${theme.transition.nav};
+      @media (min-width: 600px) {
+        display: none;
+      }
+    `;
   }}
 `;
